@@ -1,17 +1,29 @@
 import { Link } from 'react-router-dom'
 import { ParticipantContext, Participant } from 'Participants'
+import { Header } from 'Header'
 
 export function ParticipantList() {
     return (
         <ParticipantContext.Consumer>
             {(context) => (
-                <div className="participantListContainer">
-                    <ul className="participantList">
-                        {Object.keys(context.participants).map(id => <Participant key={id} id={id} />)}
-                    </ul>
-                    <button onClick={context.addNewParticipant}>New Participant</button>
-                    <button onClick={context.resetParticipants}>Reset</button>
-                    <Link to="/split">SPLIT IT</Link>
+                <div className="appLayout">
+                    <Header />
+                    <div className="participants listContainer">
+                        <div className="participantList">
+                            {Object.keys(context.participants).map(id => <Participant key={id} id={id} />)}
+                        </div>
+                        <div className="participantListButtons">
+                            <button type="button" className="ui very rounded teal icon button" onClick={context.addNewParticipant}>
+                                <i className="plus icon"></i>&nbsp;Add Participant
+                            </button>
+                            <button type="button" className="ui very rounded red icon button" onClick={context.resetParticipants}>
+                                <i className="undo alternate icon"></i>&nbsp;Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div className="buttonContainer">
+                        <Link to="/split" className="ui very rounded massive teal button splitButton">SPLIT IT</Link>
+                    </div>
                 </div>
             )}
         </ParticipantContext.Consumer>

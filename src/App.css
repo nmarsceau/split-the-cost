@@ -1,15 +1,184 @@
-.participantList {
-    padding-left: 0;
+.App {
+    max-width: 30em;
+    margin-inline: auto;
 }
 
-.participantList li {
-    list-style-type: none;
+.hiddenVisually {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.appLayout {
+    display: grid;
+    height: 100vh;
+    max-height: 100vh;
+    grid-template-rows: 1fr 70% 1fr;
+    background-color: #efefef;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1em;
+}
+
+.headerLogo {
+    width: 48px;
+}
+
+.header h1 {
+    margin-top: 0;
+}
+
+.listContainer {
+    display: grid;
+    margin-inline: 1em;
+    padding: 1em 1em 1.5em 1.5em;
+    background-color: #fff;
+    border-radius: 2em;
+}
+
+.participants.listContainer {
+    grid-template-rows: 1fr min-content;
+}
+
+.settlements.listContainer {
+    grid-template-rows: min-content 1fr;
+}
+
+.listContainer .participant,
+.listContainer .settlement {
+    border-radius: 1em !important;
+}
+
+.participantList {
+    overflow-y: auto;
+    overflow-x: visible;
+    padding-block: 0.5em;
+    padding-inline-end: 0.5em;
+}
+
+.participant {
+    display: grid;
+    grid-template-columns: 4em 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "nameLabel name"
+        "amountLabel amount"
+    ;
+    row-gap: 0.5em;
+    align-items: center;
+}
+
+.participant label {
+    text-align: right;
+    padding-inline-end: 0.5em;
+}
+
+.participant input {
+    padding: 0.5em;
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+}
+
+.participant label[for^="name-"] {
+    grid-area: nameLabel;
+}
+
+.participant input[id^="name-"] {
+    grid-area: name;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.participant label[for^="amount-"] {
+    grid-area: amountLabel;
+}
+
+.participant .amountInputContainer {
+    grid-area: amount;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.participant span {
+    margin-inline-start: 0.2em;
+}
+
+.participant input[id^="amount-"] {
+    margin-inline-start: 0.1em
+}
+
+.removeButton {
+    margin: 0 !important;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+.participantListButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-block-start: 0.5em;
+    padding-inline-end: 0.5em;
+}
+
+.participantListButtons button {
+    margin: 0 !important;
+}
+
+.settlementDetails {
+    font-size: 1.2em;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 1fr 1fr;
+}
+
+.settlementDetails dt {
+    font-weight: bold;
+}
+
+.settlementDetails dd {
+    text-align: right;
 }
 
 .settlementList {
-    padding-left: 0;
+    overflow-y: auto;
+    padding-inline-end: 0.5em;
+    padding-block-end: 0.5em;
 }
 
-.settlementList li {
-    list-style-type: none;
+.settlement {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+    font-size: 1.2em !important;
+}
+
+.settlement em {
+    margin-inline-start: -0.3em;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1em;
+}
+
+.buttonContainer .ui.button {
+    width: 93.5%;
+    margin-right: 0 !important;
+}
+
+.ui.very.rounded.button {
+    border-radius: 2em !important;
+    padding-inline: 1em !important;
 }

@@ -1,10 +1,19 @@
 import { formatCurrency } from 'Utilities'
 
 export function Settlement({ payer, amount, receiver }) {
+    let emoji, message
     if (amount === 0 && receiver === null) {
-        return <div>&#128526; {payer} is even.</div>
+        emoji = ':sunglasses:'
+        message = <div>{payer} is even.</div>
     }
     else {
-        return <div>&#128184; {payer}, pay {receiver} {formatCurrency(amount)}.</div>
+        emoji = ':money_with_wings:'
+        message = <div>{payer}, pay {receiver} {formatCurrency(amount)}.</div>
     }
+    return (
+        <div className="ui segment settlement">
+            <em data-emoji={emoji} className="medium"></em>
+            {message}
+        </div>
+    )
 }

@@ -34,18 +34,20 @@ export function Participant({ id }) {
                 context = _context
                 const p = context.participants[id]
                 return (
-                    <li id={'participant-' + id}>
-                        <label>
-                            Name
-                            <input value={p.name} onChange={e => setName(e.target.value)} />
-                        </label>
-                        <label>
-                            Amount
-                            <input type="number" value={p.amount} onChange={e => setAmount(e.target.value)} />
-                        </label>
-                        <button onClick={remove}>Remove</button>
+                    <div id={'participant-' + id} className="ui segment participant">
+                        <label htmlFor={'name-' + id}>Name</label>
+                        <input type="text" id={'name-' + id} value={p.name} onChange={e => setName(e.target.value)} />
+                        <label htmlFor={'amount-' + id}>Amount</label>
+                        <div className="amountInputContainer">
+                            <span>$</span>
+                            <input type="number" id={'amount-' + id} value={p.amount} onChange={e => setAmount(e.target.value)} />
+                        </div>
+                        <button type="button" className="ui mini circular red icon button removeButton" onClick={remove}>
+                            <label className="hiddenVisually">Remove</label>
+                            <i className="times icon"></i>
+                        </button>
                         {p.error && <div>{p.error}</div>}
-                    </li>
+                    </div>
                 )
             }}
         </ParticipantContext.Consumer>

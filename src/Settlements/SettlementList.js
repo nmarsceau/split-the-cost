@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ParticipantContext } from 'Participants'
 import { Settlement } from 'Settlements'
 import { splitCost, formatCurrency } from 'Utilities'
+import { Header } from 'Header'
 
 export function SettlementList() {
     return (
@@ -12,17 +13,24 @@ export function SettlementList() {
                     amount: p.amount
                 })))
                 return (
-                    <div className="settlementListContainer">
-                        <Link to="/">Back</Link>
-                        <div>Total Spent: {formatCurrency(total)}</div>
-                        <div>Amount Per Participant: {formatCurrency(amountPerParticipant)}</div>
-                        <ul className="settlementList">
-                            {settlements.map(s => (
-                                <li key={s.payer + s.receiver}>
+                    <div className="appLayout">
+                        <Header />
+                        <div className="settlements listContainer">
+                            <dl className="settlementDetails">
+                                <dt key="totalSpentTitle">Total Spent</dt>
+                                <dd key="totalSpentData">{formatCurrency(total)}</dd>
+                                <dt key="amountPerParticipantTitle">Amount Per Participant</dt>
+                                <dd key="amountPerParticipantData">{formatCurrency(amountPerParticipant)}</dd>
+                            </dl>
+                            <div className="settlementList">
+                                {settlements.map(s => (
                                     <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} />
-                                </li>
-                            ))}
-                        </ul>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="buttonContainer">
+                            <Link to="/" className="ui very rounded massive teal button backButton">Back</Link>
+                        </div>
                     </div>
                 )
             }}
