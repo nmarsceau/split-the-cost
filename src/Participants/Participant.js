@@ -35,17 +35,20 @@ export function Participant({ id }) {
                 const p = context.participants[id]
                 return (
                     <div id={'participant-' + id} className="ui segment participant">
-                        <label htmlFor={'name-' + id}>Name</label>
-                        <input type="text" id={'name-' + id} value={p.name} onChange={e => setName(e.target.value)} />
-                        <label htmlFor={'amount-' + id}>Amount</label>
-                        <div className="amountInputContainer">
-                            <span>$</span>
-                            <input type="number" id={'amount-' + id} value={p.amount} onChange={e => setAmount(e.target.value)} />
-                        </div>
-                        <button type="button" className="ui mini circular red icon button removeButton" onClick={remove}>
+                        <label htmlFor={'name-' + id} className="hiddenVisually">Name</label>
+                        <input type="text" id={'name-' + id} placeholder="Name" value={p.name} onChange={e => setName(e.target.value)} />
+                        <button type="button" className="ui big red icon button removeButton" onClick={remove}>
                             <label className="hiddenVisually">Remove</label>
                             <i className="times icon"></i>
                         </button>
+                        <div className="amountInputContainer">
+                            <span>spent</span>
+                            <label htmlFor={'amount-' + id} className="hiddenVisually">Amount</label>
+                            <div className="ui labeled input">
+                                <label htmlFor={'amount-' + id} className="ui label">$</label>
+                                <input type="number" id={'amount-' + id} value={p.amount} onChange={e => setAmount(e.target.value)} />
+                            </div>
+                        </div>
                         {p.error && <div>{p.error}</div>}
                     </div>
                 )

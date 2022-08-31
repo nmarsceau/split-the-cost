@@ -64,14 +64,15 @@
 
 .participant {
     display: grid;
-    grid-template-columns: 4em 1fr;
+    grid-template-columns: 1fr min-content;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-        "nameLabel name"
-        "amountLabel amount"
+        "name removeButton"
+        "amount ."
     ;
-    row-gap: 0.5em;
+    gap: 0.5em;
     align-items: center;
+    font-size: 1.2em !important;
 }
 
 .participant label {
@@ -85,18 +86,10 @@
     border-radius: 0.5em;
 }
 
-.participant label[for^="name-"] {
-    grid-area: nameLabel;
-}
-
 .participant input[id^="name-"] {
     grid-area: name;
-    font-size: 1.2em;
     font-weight: bold;
-}
-
-.participant label[for^="amount-"] {
-    grid-area: amountLabel;
+    height: 100%;
 }
 
 .participant .amountInputContainer {
@@ -104,22 +97,29 @@
     display: grid;
     grid-template-columns: min-content 1fr;
     align-items: center;
-    font-size: 1.2em;
-}
-
-.participant span {
-    margin-inline-start: 0.2em;
-}
-
-.participant input[id^="amount-"] {
-    margin-inline-start: 0.1em
+    justify-self: end;
 }
 
 .removeButton {
+    grid-area: removeButton;
     margin: 0 !important;
-    position: absolute;
-    top: -4px;
-    right: -4px;
+    border-radius: 0.5em !important;
+}
+
+.participant .ui.labeled.input {
+    margin-inline-start: 0.5em;
+}
+
+.participant .ui.labeled.input label {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.participant input[id^="amount-"] {
+    max-width: 7em;
+    text-align: right;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
 }
 
 .participantListButtons {
@@ -139,6 +139,7 @@
     display: grid;
     grid-template-columns: 60% 40%;
     grid-template-rows: 1fr 1fr;
+    padding-inline-end: 0.5em;
 }
 
 .settlementDetails dt {
