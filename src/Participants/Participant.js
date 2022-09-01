@@ -42,7 +42,7 @@ export function Participant({ id }) {
                             <i className="times icon"></i>
                         </button>
                         <div className="amountInputContainer">
-                            <span>spent</span>
+                            <small>spent</small>
                             <label htmlFor={'amount-' + id} className="hiddenVisually">Amount</label>
                             <div className="ui labeled input">
                                 <label htmlFor={'amount-' + id} className="ui label">$</label>

@@ -90,6 +90,7 @@
     grid-area: name;
     font-weight: bold;
     height: 100%;
+    min-width: 0;
 }
 
 .participant .amountInputContainer {
@@ -104,6 +105,7 @@
     grid-area: removeButton;
     margin: 0 !important;
     border-radius: 0.5em !important;
+    height: 100%;
 }
 
 .participant .ui.labeled.input {

@@ -13,10 +13,10 @@ export function ParticipantList() {
                             {Object.keys(context.participants).map(id => <Participant key={id} id={id} />)}
                         </div>
                         <div className="participantListButtons">
-                            <button type="button" className="ui very rounded teal icon button" onClick={context.addNewParticipant}>
+                            <button type="button" className="ui very rounded large teal icon button" onClick={context.addNewParticipant}>
                                 <i className="plus icon"></i>&nbsp;Add Participant
                             </button>
-                            <button type="button" className="ui very rounded red icon button" onClick={context.resetParticipants}>
+                            <button type="button" className="ui very rounded large red icon button" onClick={context.resetParticipants}>
                                 <i className="undo alternate icon"></i>&nbsp;Reset
                             </button>
                         </div>
