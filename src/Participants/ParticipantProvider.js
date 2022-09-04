@@ -10,6 +10,7 @@ export function ParticipantProvider({ children }) {
     const [participants, setParticipants] = useState(initializeParticipants())
 
     const addNewParticipant = () => {
+        window.navigator.vibrate(100)
         const existingIds = Object.keys(participants)
         let id = randomString()
         while (existingIds.includes(id)) {id = randomString()}
@@ -17,6 +18,9 @@ export function ParticipantProvider({ children }) {
     }
 
     const resetParticipants = () => {
+        const vibratePattern = []
+        for (const _ in participants) {vibratePattern.push(50, 30)}
+        window.navigator.vibrate(vibratePattern)
         setParticipants(initializeParticipants())
     }
     
