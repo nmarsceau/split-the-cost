@@ -19,7 +19,9 @@ export function ParticipantProvider({ children }) {
 
     const resetParticipants = () => {
         const vibratePattern = []
-        for (const _ in participants) {vibratePattern.push(50, 30)}
+        for (let i = 0, iStop = Object.keys(participants).length; i < iStop; i++) {
+            vibratePattern.push(50, 30)
+        }
         window.navigator.vibrate(vibratePattern)
         setParticipants(initializeParticipants())
     }
