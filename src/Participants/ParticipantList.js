@@ -22,7 +22,7 @@ export function ParticipantList() {
                         </div>
                     </div>
                     <div className="buttonContainer">
-                        <Link to="/split" className="ui very rounded massive teal button splitButton">SPLIT IT</Link>
+                        <Link to="/split" className="ui very rounded massive teal button splitButton" onClick={() => {window.navigator.vibrate(300)}}>SPLIT IT</Link>
                     </div>
                 </div>
             )}
