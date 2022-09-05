@@ -4,7 +4,7 @@ import { ParticipantContext } from 'Participants'
 export function Header() {
     return (
         <ParticipantContext.Consumer>
-            {(context) => {
+            {(context) => (
                 <div className="headerContainer">
                     <header className="header">
                         <img src={process.env.PUBLIC_URL + 'logo/logo-64.png'} alt="" className="headerLogo" />
@@ -20,7 +20,7 @@ export function Header() {
                         </Link>
                     </div>
                 </div>
-            }}
+            )}
         </ParticipantContext.Consumer>
     )
 }
