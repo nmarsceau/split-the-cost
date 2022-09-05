@@ -19,9 +19,20 @@
     background-color: #efefef;
 }
 
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 1em;
+}
+
+.settingsButton {
+    border-radius: 0.5em !important;
+    margin: 0 !important;
+}
+
 .header {
     display: flex;
-    justify-content: center;
     align-items: center;
     padding-block: 1em;
 }
@@ -55,9 +66,8 @@
     border-radius: 1em !important;
 }
 
-.participantList {
+.participantList, .settingsList {
     overflow-y: auto;
-    overflow-x: visible;
     padding-block: 0.5em;
     padding-inline-end: 0.5em;
 }
@@ -184,4 +194,22 @@
 .ui.very.rounded.button {
     border-radius: 2em !important;
     padding-inline: 1em !important;
+}
+
+.settingsList {
+    margin-top: 2em;
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 2em;
+}
+
+.setting > label {
+    font-size: 1.2em;
+}
+
+.setting .ui.toggle.checkbox label {
+    padding-left: 3.5rem;
 }

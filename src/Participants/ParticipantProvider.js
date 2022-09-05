@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ParticipantContext } from 'Participants'
-import { randomString } from 'Utilities'
+import { randomString, useLocalStorage } from 'Utilities'
 
 export function ParticipantProvider({ children }) {
     const initializeParticipants = () => ({
@@ -10,7 +10,6 @@ export function ParticipantProvider({ children }) {
     const [participants, setParticipants] = useState(initializeParticipants())
 
     const addNewParticipant = () => {
-        window.navigator.vibrate(100)
         const existingIds = Object.keys(participants)
         let id = randomString()
         while (existingIds.includes(id)) {id = randomString()}
@@ -18,9 +17,13 @@ export function ParticipantProvider({ children }) {
     }
 
     const resetParticipants = () => {
-        const vibratePattern = Object.keys(participants).reduce(pattern => [...pattern, 50, 30], [])
-        window.navigator.vibrate(vibratePattern)
         setParticipants(initializeParticipants())
+    }
+
+    const [vibration, setVibration] = useLocalStorage('settings.vibration', false)
+
+    const settings = {
+        vibration: {value: vibration, set: setVibration}
     }
     
     return (
@@ -28,7 +31,8 @@ export function ParticipantProvider({ children }) {
             participants,
             setParticipants,
             addNewParticipant,
-            resetParticipants
+            resetParticipants,
+            settings
         }}>{ children }</ParticipantContext.Provider>
     )
 }

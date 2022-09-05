@@ -22,7 +22,7 @@ export function Participant({ id }) {
     }
 
     const remove = () => {
-        window.navigator.vibrate(50);
+        context.settings.vibration.value && window.navigator.vibrate(50)
         context.setParticipants(participants => {
             delete participants[id]
             return {...participants}

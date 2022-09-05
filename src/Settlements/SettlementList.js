@@ -29,7 +29,10 @@ export function SettlementList() {
                             </div>
                         </div>
                         <div className="buttonContainer">
-                            <Link to="/" className="ui very rounded massive teal button backButton" onClick={() => {window.navigator.vibrate(100)}}>Back</Link>
+                            <Link to="/"
+                                className="ui very rounded massive teal button"
+                                onClick={() => context.settings.vibration.value && window.navigator.vibrate(100)}
+                            >Back</Link>
                         </div>
                     </div>
                 )
