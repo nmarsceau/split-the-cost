@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ParticipantContext } from 'Participants'
 
-export function Header() {
+export function Header({ showSettings = true }) {
     return (
         <ParticipantContext.Consumer>
             {(context) => (
@@ -11,13 +11,15 @@ export function Header() {
                         <h1>Split The Cost</h1>
                     </header>
                     <div>
-                        <Link to="/settings"
-                            className="ui big teal icon button settingsButton"
-                            onClick={() => context.settings.vibration.value && window.navigator.vibrate(100)}
-                        >
-                            <label className="hiddenVisually">Settings</label>
-                            <i className="cog icon"></i>
-                        </Link>
+                        {showSettings &&
+                            <Link to="/settings"
+                                className="ui big teal icon button settingsButton"
+                                onClick={() => context.settings.vibration.value && window.navigator.vibrate(100)}
+                            >
+                                <label className="hiddenVisually">Settings</label>
+                                <i className="cog icon"></i>
+                            </Link>
+                        }
                     </div>
                 </div>
             )}

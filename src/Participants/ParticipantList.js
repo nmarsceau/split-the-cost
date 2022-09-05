@@ -40,7 +40,10 @@ export function ParticipantList() {
                         <Link to="/split"
                             className="ui very rounded massive teal button splitButton"
                             onClick={() => context.settings.vibration.value && window.navigator.vibrate(300)}
-                        >SPLIT IT</Link>
+                        >
+                            <img src={process.env.PUBLIC_URL + 'logo/logo-64-outline.png'} alt="" />
+                            <span>SPLIT IT</span>
+                        </Link>
                     </div>
                 </div>
             )}

@@ -7,8 +7,9 @@ export function Settings() {
         <ParticipantContext.Consumer>
             {(context) => (
                 <div className="appLayout">
-                    <Header />
-                    <div className="listContainer">
+                    <Header showSettings={false} />
+                    <div className="settings listContainer">
+                        <h2>Settings</h2>
                         <div className="settingsList">
                             <div className="setting">
                                 <label htmlFor="vibration">Use vibration?</label>
@@ -26,7 +27,10 @@ export function Settings() {
                         <Link to="/"
                             className="ui very rounded massive teal button"
                             onClick={() => context.settings.vibration.value && window.navigator.vibrate(300)}
-                        >Back</Link>
+                        >
+                            <i className="arrow left icon"></i>
+                            Back
+                        </Link>
                     </div>
                 </div>
             )}

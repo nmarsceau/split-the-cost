@@ -57,7 +57,7 @@
     grid-template-rows: 1fr min-content;
 }
 
-.settlements.listContainer {
+.settlements.listContainer, .settings.listContainer {
     grid-template-rows: min-content 1fr;
 }
 
@@ -146,6 +146,15 @@
     margin: 0 !important;
 }
 
+.splitButton img {
+    width: 40px;
+    vertical-align: middle;
+}
+
+.splitButton span {
+    vertical-align: middle;
+}
+
 .settlementDetails {
     font-size: 1.2em;
     display: grid;
@@ -196,18 +205,31 @@
     padding-inline: 1em !important;
 }
 
-.settingsList {
-    margin-top: 2em;
+.settings.listContainer {
+    padding: 3em;
 }
 
 .setting {
     display: flex;
     justify-content: space-between;
-    margin-inline: 2em;
+    padding-block-end: 1em;
+}
+
+.setting:not(:first-child) {
+    padding-block-start: 1em;
+    border-top: 1px solid lightgray;
 }
 
 .setting > label {
     font-size: 1.2em;
+}
+
+.setting .ui.toggle.checkbox input:checked ~ label::before {
+    background-color: #00b5ad !important;
+}
+
+.setting .ui.toggle.checkbox input:checked:focus ~ label::before {
+    background-color: #009c95 !important;
 }
 
 .setting .ui.toggle.checkbox label {
