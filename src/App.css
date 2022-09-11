@@ -47,18 +47,17 @@
 
 .listContainer {
     display: grid;
+    grid-template-rows: min-content 1fr min-content;
     margin-inline: 1em;
     padding: 1em 1em 1.5em 1.5em;
     background-color: #fff;
     border-radius: 2em;
 }
 
-.participants.listContainer {
-    grid-template-rows: 1fr min-content;
-}
-
-.settlements.listContainer, .settings.listContainer {
-    grid-template-rows: min-content 1fr;
+.groupName {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0;
 }
 
 .listContainer .participant,
@@ -146,8 +145,18 @@
     margin: 0 !important;
 }
 
+.ui.scrolling.dropdown.groupButton .menu {
+    width: 200px !important;
+    max-height: 250px !important;
+    left: -100% !important;
+}
+
+.groupButton .item .description {
+    white-space: initial;
+}
+
 .splitButton img {
-    width: 40px;
+    width: 32px;
     vertical-align: middle;
 }
 
@@ -201,8 +210,25 @@
 }
 
 .ui.very.rounded.button {
-    border-radius: 2em !important;
+    border-radius: 2em;
     padding-inline: 1em !important;
+}
+
+.ui.very.rounded.buttons .ui.button:first-child {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 0.5em;
+    border-right: 2px solid white;
+}
+
+.ui.very.rounded.buttons .ui.button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    padding-left: 0.5em;
 }
 
 .settings.listContainer {
@@ -210,14 +236,17 @@
 }
 
 .setting {
-    display: flex;
-    justify-content: space-between;
     padding-block-end: 1em;
 }
 
 .setting:not(:first-child) {
     padding-block-start: 1em;
     border-top: 1px solid lightgray;
+}
+
+.toggle.setting {
+    display: flex;
+    justify-content: space-between;
 }
 
 .setting > label {
@@ -234,4 +263,28 @@
 
 .setting .ui.toggle.checkbox label {
     padding-left: 3.5rem;
+}
+
+.setting .groupList .group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.groupNameModal input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.groupNameModal button {
+    border-radius: 0.5em !important;
+}
+
+.groupNameError, .duplicateGroupName {
+    text-align: center;
+    margin-top: 0.25em;
 }

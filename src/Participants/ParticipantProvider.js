@@ -9,15 +9,31 @@ export function ParticipantProvider({ children }) {
 
     const [participants, setParticipants] = useState(initializeParticipants())
 
-    const addNewParticipant = () => {
-        const existingIds = Object.keys(participants)
+    const createNewParticipant = (name = '', existingIds) => {
+        existingIds ??= Object.keys(participants)
         let id = randomString()
         while (existingIds.includes(id)) {id = randomString()}
-        setParticipants(participants => ({...participants, [id]: {name: '', amount: 0}}))
+        return [id, {name: name, amount: 0}]
+    }
+
+    const addNewParticipant = (name = '') => {
+        const [id, participant] = createNewParticipant(name)
+        setParticipants(participants => ({...participants, [id]: participant}))
     }
 
     const resetParticipants = () => {
         setParticipants(initializeParticipants())
+    }
+
+    const [groups, setGroups] = useLocalStorage('groups', {})
+
+    const useGroup = groupName => {
+        const newParticipants = {}
+        for (const name of groups[groupName]) {
+            const [id, participant] = createNewParticipant(name, Object.keys(newParticipants))
+            newParticipants[id] = participant
+        }
+        setParticipants(newParticipants)
     }
 
     const [vibration, setVibration] = useLocalStorage('settings.vibration', false)
@@ -32,6 +48,9 @@ export function ParticipantProvider({ children }) {
             setParticipants,
             addNewParticipant,
             resetParticipants,
+            groups,
+            setGroups,
+            useGroup,
             settings
         }}>{ children }</ParticipantContext.Provider>
     )

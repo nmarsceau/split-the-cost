@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ParticipantContext } from 'Participants'
 import { Settlement } from 'Settlements'
-import { splitCost, formatCurrency } from 'Utilities'
+import { splitCost, formatCurrency, randomString } from 'Utilities'
 import { Header } from 'Header'
 
 export function SettlementList() {
@@ -15,7 +15,7 @@ export function SettlementList() {
                 return (
                     <div className="appLayout">
                         <Header />
-                        <div className="settlements listContainer">
+                        <div className="listContainer">
                             <dl className="settlementDetails">
                                 <dt key="totalSpentTitle">Total Spent</dt>
                                 <dd key="totalSpentData">{formatCurrency(total)}</dd>
@@ -24,9 +24,10 @@ export function SettlementList() {
                             </dl>
                             <div className="settlementList">
                                 {settlements.map(s => (
-                                    <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} />
+                                    <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} key={randomString} />
                                 ))}
                             </div>
+                            <div>{/* Placeholder */}</div>
                         </div>
                         <div className="buttonContainer">
                             <Link to="/"
