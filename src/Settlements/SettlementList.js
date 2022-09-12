@@ -1,9 +1,8 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { AppContext } from 'AppContext'
 import { Settlement } from 'Settlements'
 import { splitCost, formatCurrency, randomString } from 'Utilities'
-import { Header } from 'Header'
+import { Header, VibrateButton } from 'Elements'
 
 export function SettlementList() {
     const data = useContext(AppContext)
@@ -25,19 +24,15 @@ export function SettlementList() {
                 </dl>
                 <div className="settlementList">
                     {settlements.map(s => (
-                        <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} key={randomString} />
+                        <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} key={randomString()} />
                     ))}
                 </div>
                 <div>{/* Placeholder */}</div>
             </div>
             <div className="buttonContainer">
-                <Link to="/"
-                    className="ui very rounded massive teal button"
-                    onClick={() => data.settings.vibration.value && window.navigator.vibrate(100)}
-                >
-                    <i className="arrow left icon"></i>
-                    Back
-                </Link>
+                <VibrateButton type="link" to="/" className="ui very rounded massive teal button" vibrationPattern="100">
+                    <i className="arrow left icon"></i> Back
+                </VibrateButton>
             </div>
         </div>
     )

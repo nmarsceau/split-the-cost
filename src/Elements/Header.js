@@ -1,10 +1,6 @@
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { AppContext } from 'AppContext'
+import { VibrateButton } from 'Elements'
 
 export function Header({ showSettings = true }) {
-    const data = useContext(AppContext)
-
     return (
         <div className="headerContainer">
             <header className="header">
@@ -13,13 +9,10 @@ export function Header({ showSettings = true }) {
             </header>
             <div>
                 {showSettings &&
-                    <Link to="/settings"
-                        className="ui big teal icon button settingsButton"
-                        onClick={() => data.settings.vibration.value && window.navigator.vibrate(100)}
-                    >
+                    <VibrateButton type="link" to="/settings" className="ui big teal icon button settingsButton" vibrationPattern="100">
                         <label className="hiddenVisually">Settings</label>
                         <i className="cog icon"></i>
-                    </Link>
+                    </VibrateButton>
                 }
             </div>
         </div>

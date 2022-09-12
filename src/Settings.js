@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { AppContext } from 'AppContext'
-import { Header } from 'Header'
+import { Header, VibrateButton } from 'Elements'
 import { $ } from 'Utilities'
 
 export function Settings() {
@@ -49,10 +48,10 @@ export function Settings() {
                                         <div><small>{data.groups[groupName].join(', ')}</small></div>
                                     </div>
                                     <div>
-                                        <button type="button" className="ui red icon button" onClick={() => deleteGroup(groupName)}>
+                                        <VibrateButton className="ui red icon button" onClick={() => deleteGroup(groupName)} vibrationPattern="50">
                                             <label className="hiddenVisually">Delete Group</label>
                                             <i className="trash icon"></i>
-                                        </button>
+                                        </VibrateButton>
                                     </div>
                                 </div>
                             ))}
@@ -63,13 +62,9 @@ export function Settings() {
                 <div>{/* Placeholder */}</div>
             </div>
             <div className="buttonContainer">
-                <Link to="/"
-                    className="ui very rounded massive teal button"
-                    onClick={() => data.settings.vibration.value && window.navigator.vibrate(300)}
-                >
-                    <i className="arrow left icon"></i>
-                    Back
-                </Link>
+                <VibrateButton type="link" to="/" className="ui very rounded massive teal button" vibrationPattern={300}>
+                    <i className="arrow left icon"></i>Back
+                </VibrateButton>
             </div>
         </div>
     )

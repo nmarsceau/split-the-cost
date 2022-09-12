@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { AppContext } from 'AppContext'
 import { Participant } from 'Participants'
-import { Header } from 'Header'
+import { Header, VibrateButton } from 'Elements'
 import { $, listsEqual } from 'Utilities'
 
 export function ParticipantList() {
@@ -30,7 +29,14 @@ export function ParticipantList() {
     useEffect(() => {
         $(document).ready(() => {
             $('.dropdown').dropdown()
-            $('.groupNameModal').modal({detachable: false})
+            $('.groupNameModal').modal({
+                detachable: false,
+                onShow: () => {
+                    setGroupName('')
+                    setGroupNameError('')
+                    setDuplicateGroupName(false)
+                }
+            })
         })
     }, [])
 
@@ -42,7 +48,6 @@ export function ParticipantList() {
             break
         }
     }
-    const saveGroupDisabled = matchingGroupName === null && currentGroupPeople.length > 0 ? {} : {disabled: 'disabled'};
 
     return (
         <div className="appLayout">
@@ -54,16 +59,10 @@ export function ParticipantList() {
                 </div>
                 <div className="participantListButtons">
                     <div className="ui very rounded buttons">
-                        <button type="button"
-                            className="ui teal icon button"
-                            onClick={() => {
-                                data.settings.vibration.value && window.navigator.vibrate(100)
-                                data.addNewParticipant()
-                            }}
-                        >
+                        <VibrateButton className="ui teal icon button" onClick={data.addNewParticipant} vibrationPatter="100">
                             <i className="plus icon"></i>&nbsp;Add Person
-                        </button>
-                        <button type="button" className="ui teal icon bottom floating scrolling dropdown button groupButton">
+                        </VibrateButton>
+                        <VibrateButton className="ui teal icon bottom floating scrolling dropdown button groupButton" vibrationPattern="50">
                             <label className="hiddenVisually">Choose a Group</label>
                             <i className="users icon"></i>
                             <div className="menu">
@@ -76,45 +75,29 @@ export function ParticipantList() {
                                 ))}
                                 {Object.keys(data.groups).length === 0 && <div className="item disabled"><i>No Groups Yet</i></div>}
                             </div>
-                        </button>
+                        </VibrateButton>
                     </div>
-                    <button type="button"
+                    <VibrateButton
                         className="ui very rounded blue icon button"
-                        onClick={() => {
-                            data.settings.vibration.value && window.navigator.vibrate(100)
-                            setGroupName('')
-                            setGroupNameError('')
-                            setDuplicateGroupName(false)
-                            $('.groupNameModal').modal('show')
-                        }}
-                        {...saveGroupDisabled}
-                    >
-                        <i className="save icon"></i>
-                        &nbsp;Save Group
-                    </button>
-                    <button type="button"
+                        onClick={() => {$('.groupNameModal').modal('show')}}
+                        vibrationPattern="100"
+                        disabled={matchingGroupName !== null || currentGroupPeople.length === 0}
+                    ><i className="save icon"></i>&nbsp;Save Group</VibrateButton>
+                    <VibrateButton
                         className="ui very rounded red icon button"
-                        onClick={() => {
-                            if (data.settings.vibration.value) {
-                                const vibratePattern = Object.keys(data.participants).reduce(pattern => [...pattern, 50, 30], [])
-                                window.navigator.vibrate(vibratePattern)
-                            }
-                            data.resetParticipants()
-                        }}
+                        onClick={data.resetParticipants}
+                        vibrationPattern={Object.keys(data.participants).reduce(pattern => [...pattern, 50, 30], [])}
                     >
                         <label className="hiddenVisually">Reset Participants</label>
                         <i className="undo alternate icon"></i>
-                    </button>
+                    </VibrateButton>
                 </div>
             </div>
             <div className="buttonContainer">
-                <Link to="/split"
-                    className="ui very rounded massive teal button splitButton"
-                    onClick={() => data.settings.vibration.value && window.navigator.vibrate(300)}
-                >
+                <VibrateButton type="link" to="/split" className="ui very rounded massive teal button splitButton" vibrationPattern="300">
                     <img src={process.env.PUBLIC_URL + 'logo/logo-64-outline.png'} alt="" />
                     <span>SPLIT IT</span>
-                </Link>
+                </VibrateButton>
             </div>
             <div className="ui mini modal groupNameModal">
                 <div className="content">
@@ -134,8 +117,8 @@ export function ParticipantList() {
                     {groupNameError && <div className="groupNameError"><span className="ui error text">{groupNameError}</span></div>}
                 </div>
                 <div className="actions">
-                    <button type="button" className="ui red icon cancel button"><i className="undo alternate icon"></i>&nbsp;Cancel</button>
-                    <button type="button" className="ui teal icon ok button" onClick={saveGroup}><i className="save icon"></i>&nbsp;Save</button>
+                    <VibrateButton className="ui red icon cancel button" vibrationPattern="50"><i className="undo alternate icon"></i>&nbsp;Cancel</VibrateButton>
+                    <VibrateButton className="ui teal icon ok button" onClick={saveGroup} vibrationPattern="100"><i className="save icon"></i>&nbsp;Save</VibrateButton>
                 </div>
             </div>
         </div>

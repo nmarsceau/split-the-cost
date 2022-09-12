@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from 'AppContext'
+import { VibrateButton } from 'Elements';
 
 export function Participant({ id }) {
     const data = useContext(AppContext)
@@ -23,7 +24,6 @@ export function Participant({ id }) {
     }
 
     const remove = () => {
-        data.settings.vibration.value && window.navigator.vibrate(50)
         data.setParticipants(participants => {
             delete participants[id]
             return {...participants}
@@ -35,10 +35,10 @@ export function Participant({ id }) {
         <div id={'participant-' + id} className="ui segment participant">
             <label htmlFor={'name-' + id} className="hiddenVisually">Name</label>
             <input type="text" id={'name-' + id} placeholder="Name" value={p.name} onChange={e => setName(e.target.value)} />
-            <button type="button" className="ui big red icon button removeButton" onClick={remove}>
+            <VibrateButton className="ui big red icon button removeButton" onClick={remove} vibrationPattern="50">
                 <label className="hiddenVisually">Remove</label>
-                <i className="times icon"></i>
-            </button>
+                <i className="trash icon"></i>
+            </VibrateButton>
             <div className="amountInputContainer">
                 <small>spent</small>
                 <label htmlFor={'amount-' + id} className="hiddenVisually">Amount</label>
