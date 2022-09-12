@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ParticipantProvider, ParticipantList } from 'Participants';
+import { AppProvider } from 'AppContext';
+import { ParticipantList } from 'Participants';
 import { SettlementList } from 'Settlements';
 import { Settings } from 'Settings';
 
@@ -7,7 +8,7 @@ import './App.css';
 
 function App() {
     return (
-        <ParticipantProvider>
+        <AppProvider>
             <div className="App">
                 <BrowserRouter>
                     <Routes>
@@ -17,7 +18,7 @@ function App() {
                     </Routes>
                 </BrowserRouter>
             </div>
-        </ParticipantProvider>
+        </AppProvider>
     );
 }
 
