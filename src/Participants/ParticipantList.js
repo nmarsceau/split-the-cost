@@ -8,23 +8,7 @@ export function ParticipantList() {
     const data = useContext(AppContext)
 
     const [groupName, setGroupName] = useState('')
-    const [groupNameError, setGroupNameError] = useState('')
     const [duplicateGroupName, setDuplicateGroupName] = useState(false)
-
-    const saveGroup = () => {
-        let foundErrors = false
-        const _groupName = groupName.trim()
-        if (_groupName === '') {
-            setGroupNameError('Group Name may not be empty.')
-            foundErrors = true
-        }
-        else {setGroupNameError('')}
-        if (foundErrors) {return false}
-        data.setGroups(groups => ({
-            ...groups,
-            [_groupName]: Object.values(data.participants).map(p => p.name).filter(n => n !== '')
-        }))
-    }
 
     useEffect(() => {
         $(document).ready(() => {
@@ -33,7 +17,6 @@ export function ParticipantList() {
                 detachable: false,
                 onShow: () => {
                     setGroupName('')
-                    setGroupNameError('')
                     setDuplicateGroupName(false)
                 }
             })
@@ -114,11 +97,20 @@ export function ParticipantList() {
                         }}
                     />
                     {duplicateGroupName && <div className="duplicateGroupName"><span className="ui warning text">This will overwrite the existing<br />"{groupName}" group.</span></div>}
-                    {groupNameError && <div className="groupNameError"><span className="ui error text">{groupNameError}</span></div>}
                 </div>
                 <div className="actions">
                     <VibrateButton className="ui red icon cancel button" vibrationPattern="50"><i className="undo alternate icon"></i>&nbsp;Cancel</VibrateButton>
-                    <VibrateButton className="ui teal icon ok button" onClick={saveGroup} vibrationPattern="100"><i className="save icon"></i>&nbsp;Save</VibrateButton>
+                    <VibrateButton
+                        className="ui teal icon ok button"
+                        onClick={() => {
+                            data.setGroups(groups => ({
+                                ...groups,
+                                [groupName.trim()]: Object.values(data.participants).map(p => p.name).filter(n => n !== '')
+                            }))
+                        }}
+                        vibrationPattern="100"
+                        disabled={groupName.trim() === ''}
+                    ><i className="save icon"></i>&nbsp;Save</VibrateButton>
                 </div>
             </div>
         </div>
