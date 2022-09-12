@@ -1,2 +1,2 @@
-export * from './ParticipantList'
+export * from './Participants'
 export * from './Participant'

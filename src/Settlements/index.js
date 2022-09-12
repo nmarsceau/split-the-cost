@@ -1,2 +1,2 @@
-export * from './SettlementList'
+export * from './Settlements'
 export * from './Settlement'

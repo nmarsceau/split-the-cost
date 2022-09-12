@@ -4,7 +4,7 @@ import { Settlement } from 'Settlements'
 import { splitCost, formatCurrency, randomString } from 'Utilities'
 import { Header, VibrateButton } from 'Elements'
 
-export function SettlementList() {
+export function Settlements() {
     const data = useContext(AppContext)
 
     const { settlements, total, amountPerParticipant } = splitCost(Object.values(data.participants).map(p => ({

@@ -4,7 +4,7 @@ import { Participant } from 'Participants'
 import { Header, VibrateButton } from 'Elements'
 import { $, listsEqual } from 'Utilities'
 
-export function ParticipantList() {
+export function Participants() {
     const data = useContext(AppContext)
 
     const [groupName, setGroupName] = useState('')
