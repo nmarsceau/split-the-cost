@@ -284,7 +284,7 @@
     border-radius: 0.5em !important;
 }
 
-.groupNameError, .duplicateGroupName {
+.duplicateGroupName {
     text-align: center;
     margin-top: 0.25em;
 }

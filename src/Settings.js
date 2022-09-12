@@ -27,7 +27,7 @@ export function Settings() {
 
     return (
         <div className="appLayout">
-            <Header showSettings={false} />
+            <Header />
             <div className="settings listContainer">
                 <h2>Settings</h2>
                 <div className="settingsList">
