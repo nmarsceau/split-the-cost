@@ -1,21 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { AppContext } from 'AppContext'
-import { Header, VibrateButton } from 'Elements'
-import { $ } from 'Utilities'
+import { Header, VibrateButton, Checkbox } from 'Elements'
 
 export function Settings() {
     const data = useContext(AppContext)
-
-    useEffect(() => {
-        $(document).ready(() => {
-            $('.vibrationCheckbox').checkbox({
-                onChange: function() {
-                    data.settings.vibration.set(this.checked)
-                }
-            })
-        })
-        // eslint-disable-next-line
-    }, [])
 
     const deleteGroup = groupName => {
         data.settings.vibration.value && window.navigator.vibrate(50)
@@ -33,10 +21,7 @@ export function Settings() {
                 <div className="settingsList">
                     <div className="toggle setting">
                         <label htmlFor="vibration">Use vibration?</label>
-                        <div className="ui toggle checkbox vibrationCheckbox">
-                            <input type="checkbox" id="vibration" name="vibration" checked={data.settings.vibration.value} onChange={() => {}} />
-                            <label></label>
-                        </div>
+                        <Checkbox id="vibration" checked={data.settings.vibration.value} setter={data.settings.vibration.set} />
                     </div>
                     <div className="setting">
                         <label>Groups</label>
