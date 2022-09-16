@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { $ } from 'Utilities'
 
 export function Checkbox({ id, checked, setter }) {
-    useEffect(() => {$(() => {$('#' + id).checkbox()})}, [ id ])
+    useEffect(() => {
+        $ instanceof Function && $(() => $('#' + id).checkbox())
+    }, [ id ])
 
     return (
         <div className="ui toggle checkbox">

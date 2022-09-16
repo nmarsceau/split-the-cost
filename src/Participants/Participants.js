@@ -11,16 +11,18 @@ export function Participants() {
     const [duplicateGroupName, setDuplicateGroupName] = useState(false)
 
     useEffect(() => {
-        $(document).ready(() => {
-            $('.dropdown').dropdown()
-            $('.groupNameModal').modal({
-                detachable: false,
-                onShow: () => {
-                    setGroupName('')
-                    setDuplicateGroupName(false)
-                }
+        if ($ instanceof Function) {
+            $(document).ready(() => {
+                $('.dropdown').dropdown()
+                $('.groupNameModal').modal({
+                    detachable: false,
+                    onShow: () => {
+                        setGroupName('')
+                        setDuplicateGroupName(false)
+                    }
+                })
             })
-        })
+        }
     }, [])
 
     let matchingGroupName = null
@@ -62,7 +64,7 @@ export function Participants() {
                     </div>
                     <VibrateButton
                         className="ui very rounded blue icon button"
-                        onClick={() => {$('.groupNameModal').modal('show')}}
+                        onClick={() => $ instanceof Function && $('.groupNameModal').modal('show')}
                         vibrationPattern="100"
                         disabled={matchingGroupName !== null || currentGroupPeople.length === 0}
                     ><i className="save icon"></i>&nbsp;Save Group</VibrateButton>
