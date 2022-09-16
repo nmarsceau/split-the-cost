@@ -7,7 +7,7 @@ export const splitCost = participants => {
         total += p.amount
     })
     const
-        amountPerParticipant = Math.round(total / participants.length),
+        amountPerParticipant = participants.length === 0 ? 0 : Math.round(total / participants.length),
         payers = [],
         receivers = [],
         settlements = []
