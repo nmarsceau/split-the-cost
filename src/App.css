@@ -265,6 +265,11 @@
     padding-left: 3.5rem;
 }
 
+.groupList {
+    max-height: 13em;
+    overflow-y: auto;
+}
+
 .setting .groupList .group {
     display: flex;
     justify-content: space-between;
