@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from 'AppContext'
 import { Participant } from 'Participants'
-import { Header, VibrateButton } from 'Elements'
+import { Header, VibrateButton, Modal } from 'Elements'
 import { $, listsEqual } from 'Utilities'
 
 export function Participants() {
@@ -14,13 +14,6 @@ export function Participants() {
         if ($ instanceof Function) {
             $(document).ready(() => {
                 $('.dropdown').dropdown()
-                $('.groupNameModal').modal({
-                    detachable: false,
-                    onShow: () => {
-                        setGroupName('')
-                        setDuplicateGroupName(false)
-                    }
-                })
             })
         }
     }, [])
@@ -64,7 +57,7 @@ export function Participants() {
                     </div>
                     <VibrateButton
                         className="ui very rounded blue icon button"
-                        onClick={() => $ instanceof Function && $('.groupNameModal').modal('show')}
+                        onClick={() => $ instanceof Function && $('#groupNameModal').modal('show')}
                         vibrationPattern="100"
                         disabled={matchingGroupName !== null || currentGroupPeople.length === 0}
                     ><i className="save icon"></i>&nbsp;Save Group</VibrateButton>
@@ -84,7 +77,13 @@ export function Participants() {
                     <span>SPLIT IT</span>
                 </VibrateButton>
             </div>
-            <div className="ui mini modal groupNameModal">
+            <Modal id="groupNameModal" className="mini" config={{
+                detachable: false,
+                onShow: () => {
+                    setGroupName('')
+                    setDuplicateGroupName(false)
+                }
+            }}>
                 <div className="content">
                     <label htmlFor="groupName" className="hiddenVisually">Group Name</label>
                     <input type="text" id="groupName" name="groupName" placeholder="Group Name"
@@ -114,7 +113,7 @@ export function Participants() {
                         disabled={groupName.trim() === ''}
                     ><i className="save icon"></i>&nbsp;Save</VibrateButton>
                 </div>
-            </div>
+            </Modal>
         </div>
     )
 }
