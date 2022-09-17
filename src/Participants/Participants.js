@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from 'AppContext'
 import { Participant } from 'Participants'
-import { Header, VibrateButton, Modal } from 'Elements'
+import { Header, VibrateButton, Modal, Input } from 'Elements'
 import { $, listsEqual } from 'Utilities'
 
 export function Participants() {
@@ -86,16 +86,12 @@ export function Participants() {
             }}>
                 <div className="content">
                     <label htmlFor="groupName" className="hiddenVisually">Group Name</label>
-                    <input type="text" id="groupName" name="groupName" placeholder="Group Name"
-                        value={groupName} onChange={e => {
+                    <Input id="groupName" placeholder="Group Name" value={groupName}
+                        onChange={e => {
                             setGroupName(e.target.value)
                             setDuplicateGroupName(Object.keys(data.groups).includes(e.target.value))
                         }}
-                        onKeyUp={e => {
-                            if (e.key === 'Enter') {
-                                e.target.closest('.ui.modal').querySelector('.ui.ok.button').click()
-                            }
-                        }}
+                        onEnter={e => e.target.closest('.ui.modal').querySelector('.ui.ok.button').click()}
                     />
                     {duplicateGroupName && <div className="duplicateGroupName"><span className="ui warning text">This will overwrite the existing<br />"{groupName}" group.</span></div>}
                 </div>
