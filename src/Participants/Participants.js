@@ -37,7 +37,7 @@ export function Participants() {
                 </div>
                 <div className="participantListButtons">
                     <div className="ui very rounded buttons">
-                        <VibrateButton className="ui teal icon button" onClick={data.addNewParticipant} vibrationPatter="100">
+                        <VibrateButton className="ui teal icon button" onClick={data.addNewParticipant} vibrationPattern="100">
                             <i className="plus icon"></i>&nbsp;Add Person
                         </VibrateButton>
                         <VibrateButton className="ui teal icon bottom floating scrolling dropdown button groupButton" vibrationPattern="50">
