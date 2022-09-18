@@ -14,9 +14,9 @@ export function Settings() {
     }
 
     return (
-        <div className="appLayout">
+        <div className="appLayout settings">
             <Header />
-            <div className="settings listContainer">
+            <div className="listContainer settings">
                 <h2>Settings</h2>
                 <div className="settingsList">
                     <div className="toggle setting">
@@ -44,11 +44,11 @@ export function Settings() {
                         </div>
                     </div>
                 </div>
-                <div>{/* Placeholder */}</div>
             </div>
-            <div className="buttonContainer">
-                <VibrateButton type="link" to="/" className="ui very rounded massive teal button" vibrationPattern={300}>
-                    <i className="arrow left icon"></i>Back
+            <div className="primaryButtonContainer">
+                <VibrateButton type="link" to="/" className="ui massive fluid teal button" vibrationPattern={300}>
+                    <span><i className="arrow left icon"></i></span>
+                    <span>Back</span>
                 </VibrateButton>
             </div>
         </div>

@@ -9,15 +9,13 @@ import './App.css';
 function App() {
     return (
         <AppProvider>
-            <div className="App">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/split/" element={<Settlements />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/" element={<Participants />} />
-                    </Routes>
-                </BrowserRouter>
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/split/" element={<Settlements />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/" element={<Participants />} />
+                </Routes>
+            </BrowserRouter>
         </AppProvider>
     );
 }

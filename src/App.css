@@ -1,8 +1,3 @@
-.App {
-    max-width: 30em;
-    margin-inline: auto;
-}
-
 .hiddenVisually {
     position: absolute !important;
     height: 1px; width: 1px;
@@ -11,34 +6,41 @@
     clip: rect(1px, 1px, 1px, 1px);
 }
 
+.ui.button {
+    border-radius: 0.5em;
+    margin: 0;
+}
+
+input {
+    padding: 0.5em;
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+}
+
 .appLayout {
-    display: grid;
     height: 100vh;
-    max-height: 100vh;
-    grid-template-rows: 1fr 70% 1fr;
+    max-width: 30em;
+    margin-inline: auto;
+    padding-inline: 1em;
+    display: grid;
+    grid-template-rows: 6em calc(100vh - 15em) 3em 6em;
     background-color: #efefef;
+}
+
+.appLayout.settlements, .appLayout.settings {
+    grid-template-rows: 6em calc(100vh - 12em) 6em;
 }
 
 .headerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-inline: 1em;
-}
-
-.settingsButton {
-    border-radius: 0.5em !important;
-    margin: 0 !important;
+    padding-block: 1em;
 }
 
 .header {
     display: flex;
     align-items: center;
-    padding-block: 1em;
-}
-
-.headerLogo {
-    width: 48px;
 }
 
 .header h1 {
@@ -47,11 +49,20 @@
 
 .listContainer {
     display: grid;
-    grid-template-rows: min-content 1fr min-content;
-    margin-inline: 1em;
-    padding: 1em 1em 1.5em 1.5em;
+    grid-template-rows: min-content 1fr;
+    padding: 1.5em 1em 1.5em 1.5em;
     background-color: #fff;
-    border-radius: 2em;
+    border-radius: 2.5rem;
+}
+
+.listContainer.participants {
+    padding: 1.5em 1em 0.75em 1.5em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.listContainer.settings {
+    padding: 3em;
 }
 
 .groupName {
@@ -65,34 +76,23 @@
     border-radius: 1em !important;
 }
 
-.participantList, .settingsList {
+.participantList, .settlementList, .settingsList {
     overflow-y: auto;
-    padding-block: 0.5em;
+    padding-block-end: 0.5em;
     padding-inline-end: 0.5em;
 }
 
 .participant {
     display: grid;
     grid-template-columns: 1fr min-content;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas:
         "name removeButton"
         "amount ."
+        "participantError participantError"
     ;
     gap: 0.5em;
     align-items: center;
     font-size: 1.2em !important;
-}
-
-.participant label {
-    text-align: right;
-    padding-inline-end: 0.5em;
-}
-
-.participant input {
-    padding: 0.5em;
-    border: 1px solid lightgray;
-    border-radius: 0.5em;
 }
 
 .participant input[id^="name-"] {
@@ -112,8 +112,6 @@
 
 .removeButton {
     grid-area: removeButton;
-    margin: 0 !important;
-    border-radius: 0.5em !important;
     height: 100%;
 }
 
@@ -133,42 +131,42 @@
     border-bottom-right-radius: 0.5em;
 }
 
-.participantListButtons {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-block-start: 0.5em;
-    padding-inline-end: 0.5em;
+.participantError {
+    grid-area: participantError;
+    text-align: center;
+    font-size: 1rem;
 }
 
-.participantListButtons button {
-    margin: 0 !important;
+.participantListButtons {
+    margin-inline: 0 !important;
+}
+
+.participantListButtons .ui.button:first-child {
+    border-bottom-left-radius: 2.5rem !important;
+    border-right: 1px solid gray;
+}
+
+.participantListButtons .ui.button:last-child {
+    border-bottom-right-radius: 2.5rem !important;
+}
+
+.groupButton {
+    text-align: center !important;
 }
 
 .ui.scrolling.dropdown.groupButton .menu {
     width: 200px !important;
     max-height: 250px !important;
-    left: -100% !important;
 }
 
 .groupButton .item .description {
     white-space: initial;
 }
 
-.splitButton img {
-    width: 32px;
-    vertical-align: middle;
-}
-
-.splitButton span {
-    vertical-align: middle;
-}
-
 .settlementDetails {
     font-size: 1.2em;
     display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 70% 30%;
     padding-inline-end: 0.5em;
 }
 
@@ -178,12 +176,6 @@
 
 .settlementDetails dd {
     text-align: right;
-}
-
-.settlementList {
-    overflow-y: auto;
-    padding-inline-end: 0.5em;
-    padding-block-end: 0.5em;
 }
 
 .settlement {
@@ -197,42 +189,24 @@
     margin-inline-start: -0.3em;
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-block: 1em;
+.primaryButtonContainer {
+    padding-block-start: 1em;
 }
 
-.buttonContainer .ui.button {
-    width: 93.5%;
-    margin-right: 0 !important;
-}
-
-.ui.very.rounded.button {
-    border-radius: 2em;
-    padding-inline: 1em !important;
-}
-
-.ui.very.rounded.buttons .ui.button:first-child {
-    border-top-left-radius: 2em;
-    border-bottom-left-radius: 2em;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-right: 0.5em;
-    border-right: 2px solid white;
-}
-
-.ui.very.rounded.buttons .ui.button:last-child {
-    border-top-left-radius: 0;
+.primaryButtonContainer .ui.button {
+    border-top-left-radius: 2.5rem;
+    border-top-right-radius: 2.5rem;
     border-bottom-left-radius: 0;
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 2em;
-    padding-left: 0.5em;
+    border-bottom-right-radius: 0;
+    height: 100%;
 }
 
-.settings.listContainer {
-    padding: 3em;
+.primaryButtonContainer .ui.button * {
+    vertical-align: middle;
+}
+
+.primaryButtonContainer .ui.button img {
+    width: 32px;
 }
 
 .setting {
@@ -261,10 +235,6 @@
     background-color: #009c95 !important;
 }
 
-.setting .ui.toggle.checkbox label {
-    padding-left: 3.5rem;
-}
-
 .groupList {
     max-height: 13em;
     overflow-y: auto;
@@ -278,15 +248,8 @@
 
 #groupNameModal input {
     width: 100%;
-    padding: 0.5em;
-    border: 1px solid lightgray;
-    border-radius: 0.5em;
     font-size: 1.2em;
     font-weight: bold;
-}
-
-#groupNameModal button {
-    border-radius: 0.5em !important;
 }
 
 .duplicateGroupName {

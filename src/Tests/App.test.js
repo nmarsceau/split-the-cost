@@ -10,11 +10,15 @@ test('renders elements', () => {
     expect(settingsButton).toBeInTheDocument()
     const addPersonButton = screen.getByText(/Add Person/i)
     expect(addPersonButton).toBeInTheDocument()
-    const groupsButton = screen.getByText(/Choose a Group/i)
-    expect(groupsButton).toBeInTheDocument()
+    const groupsElements = screen.getAllByText(/Groups/i)
+    let foundGroupButton = false
+    for (const e of groupsElements) {
+        if (e.classList.contains('groupButton')) {foundGroupButton = true; break}
+    }
+    expect(foundGroupButton).toEqual(true)
     const saveGroupButton = screen.getByText(/Save Group/i)
     expect(saveGroupButton).toBeInTheDocument()
-    const resetButton = screen.getByText(/Reset Participants/i)
+    const resetButton = screen.getByText(/Reset/i)
     expect(resetButton).toBeInTheDocument()
     const splitButton = screen.getByText(/SPLIT IT/i)
     expect(splitButton).toBeInTheDocument()

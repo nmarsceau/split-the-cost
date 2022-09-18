@@ -7,7 +7,7 @@ export function Checkbox({ id, checked, setter }) {
     }, [ id ])
 
     return (
-        <div className="ui toggle checkbox">
+        <div className="ui fitted toggle checkbox">
             <input type="checkbox" id={id} name={id} defaultChecked={checked} onChange={() => {setter(!checked)}} />
             <label></label>
         </div>

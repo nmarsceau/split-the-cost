@@ -49,7 +49,7 @@ export function Participant({ id }) {
                     <Input type="number" id={'amount-' + id} value={p.amount} onChange={e => setAmount(e.target.value)} onEnter={split} />
                 </div>
             </div>
-            {p.error && <div>{p.error}</div>}
+            {p.error && <div className="participantError"><span className="ui error text">{p.error}</span></div>}
         </div>
     )
 }

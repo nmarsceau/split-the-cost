@@ -13,7 +13,7 @@ export function Settlements() {
     })))
 
     return (
-        <div className="appLayout">
+        <div className="appLayout settlements">
             <Header />
             <div className="listContainer">
                 <dl className="settlementDetails">
@@ -27,11 +27,11 @@ export function Settlements() {
                         <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} key={randomString()} />
                     ))}
                 </div>
-                <div>{/* Placeholder */}</div>
             </div>
-            <div className="buttonContainer">
-                <VibrateButton type="link" to="/" className="ui very rounded massive teal button" vibrationPattern="100">
-                    <i className="arrow left icon"></i> Back
+            <div className="primaryButtonContainer">
+                <VibrateButton type="link" to="/" className="ui massive fluid teal button" vibrationPattern="100">
+                    <span><i className="arrow left icon"></i></span>
+                    <span>Back</span>
                 </VibrateButton>
             </div>
         </div>

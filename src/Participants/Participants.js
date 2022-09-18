@@ -30,49 +30,42 @@ export function Participants() {
     return (
         <div className="appLayout">
             <Header />
-            <div className="listContainer">
+            <div className="listContainer participants">
                 <h2 className="groupName">{matchingGroupName}</h2>
                 <div className="participantList">
                     {Object.keys(data.participants).map(id => <Participant key={id} id={id} />)}
                 </div>
-                <div className="participantListButtons">
-                    <div className="ui very rounded buttons">
-                        <VibrateButton className="ui teal icon button" onClick={data.addNewParticipant} vibrationPattern="100">
-                            <i className="plus icon"></i>&nbsp;Add Person
-                        </VibrateButton>
-                        <VibrateButton className="ui teal icon bottom floating scrolling dropdown button groupButton" vibrationPattern="50">
-                            <label className="hiddenVisually">Choose a Group</label>
-                            <i className="users icon"></i>
-                            <div className="menu">
-                                <div className="header">Groups</div>
-                                {Object.keys(data.groups).map(groupName => (
-                                    <div className="vertical item" key={groupName} onClick={() => data.useGroup(groupName)}>
-                                        <div className="description">{data.groups[groupName].join(', ')}</div>
-                                        <div className="text">{groupName}</div>
-                                    </div>
-                                ))}
-                                {Object.keys(data.groups).length === 0 && <div className="item disabled"><i>No Groups Yet</i></div>}
-                            </div>
-                        </VibrateButton>
-                    </div>
-                    <VibrateButton
-                        className="ui very rounded blue icon button"
-                        onClick={() => $ instanceof Function && $('#groupNameModal').modal('show')}
-                        vibrationPattern="100"
-                        disabled={matchingGroupName !== null || currentGroupPeople.length === 0}
-                    ><i className="save icon"></i>&nbsp;Save Group</VibrateButton>
-                    <VibrateButton
-                        className="ui very rounded red icon button"
-                        onClick={data.resetParticipants}
-                        vibrationPattern={Object.keys(data.participants).reduce(pattern => [...pattern, 50, 30], [])}
-                    >
-                        <label className="hiddenVisually">Reset Participants</label>
-                        <i className="undo alternate icon"></i>
-                    </VibrateButton>
-                </div>
             </div>
-            <div className="buttonContainer">
-                <VibrateButton type="link" to="/split" className="ui very rounded massive teal button splitButton" vibrationPattern="300">
+            <div className="ui bottom attached buttons participantListButtons">
+                <VibrateButton className="ui icon button" onClick={data.addNewParticipant} vibrationPattern="100">
+                    <i className="plus icon"></i>&nbsp;Add Person
+                </VibrateButton>
+                <VibrateButton className="ui icon bottom floating scrolling dropdown button groupButton" vibrationPattern="50">
+                    <i className="users icon"></i>&nbsp;&nbsp;Groups
+                    <div className="menu">
+                        <div key="saveGroup"
+                            className={'item ' + (matchingGroupName !== null || currentGroupPeople.length === 0 ? 'disabled' : '')}
+                            onClick={() => $ instanceof Function && $('#groupNameModal').modal('show')}
+                        ><i className="save icon"></i>&nbsp;Save Group</div>
+                        <div className="divider"></div>
+                        <div className="header">Groups</div>
+                        {Object.keys(data.groups).map(groupName => (
+                            <div className="vertical item" key={groupName} onClick={() => data.useGroup(groupName)}>
+                                <div className="description">{data.groups[groupName].join(', ')}</div>
+                                <div className="text">{groupName}</div>
+                            </div>
+                        ))}
+                        {Object.keys(data.groups).length === 0 && <div className="item disabled"><i>No Groups Yet</i></div>}
+                    </div>
+                </VibrateButton>
+                <VibrateButton
+                    className="ui red icon button"
+                    onClick={data.resetParticipants}
+                    vibrationPattern={Object.keys(data.participants).reduce(pattern => [...pattern, 50, 30], [])}
+                ><i className="undo alternate icon"></i>&nbsp;Reset</VibrateButton>
+            </div>
+            <div className="primaryButtonContainer">
+                <VibrateButton type="link" to="/split" className="ui massive fluid teal button" vibrationPattern="300">
                     <img src={process.env.PUBLIC_URL + 'logo/logo-64-outline.png'} alt="" />
                     <span>SPLIT IT</span>
                 </VibrateButton>
