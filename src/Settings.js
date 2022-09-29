@@ -16,9 +16,9 @@ export function Settings() {
     return (
         <div className="appLayout settings">
             <Header />
-            <div className="listContainer settings">
+            <div className="scrollContainer settings">
                 <h2>Settings</h2>
-                <div className="settingsList">
+                <div className="scroller">
                     <div className="toggle setting">
                         <label htmlFor="vibration">Use vibration?</label>
                         <Checkbox id="vibration" checked={data.settings.vibration.value} setter={data.settings.vibration.set} />

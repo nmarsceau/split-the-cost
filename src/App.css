@@ -51,7 +51,7 @@ input {
     margin-top: 0;
 }
 
-.listContainer {
+.scrollContainer {
     display: grid;
     grid-template-rows: min-content 1fr;
     padding: 1.5em 1em 1.5em 1.5em;
@@ -59,14 +59,20 @@ input {
     border-radius: 2.5rem;
 }
 
-.listContainer.participants {
+.scrollContainer.participants {
     padding: 1.5em 1em 0.75em 1.5em;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.listContainer.settings {
-    padding: 3em;
+.scrollContainer.settings {
+    padding: 2em;
+}
+
+@media screen and (min-width: 380px) {
+    .scrollContainer.settings {
+        padding: 2.5em;
+    }
 }
 
 .groupName {
@@ -75,12 +81,12 @@ input {
     margin-bottom: 0;
 }
 
-.listContainer .participant,
-.listContainer .settlement {
+.scrollContainer .participant,
+.scrollContainer .settlement {
     border-radius: 1em !important;
 }
 
-.participantList, .settlementList, .settingsList {
+.scroller {
     overflow-y: auto;
     padding-block-end: 0.5em;
     padding-inline-end: 0.5em;

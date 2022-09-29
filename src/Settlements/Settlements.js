@@ -15,14 +15,14 @@ export function Settlements() {
     return (
         <div className="appLayout settlements">
             <Header />
-            <div className="listContainer">
+            <div className="scrollContainer">
                 <dl className="settlementDetails">
                     <dt key="totalSpentTitle">Total Spent</dt>
                     <dd key="totalSpentData">{formatCurrency(total)}</dd>
                     <dt key="amountPerParticipantTitle">Amount Per Participant</dt>
                     <dd key="amountPerParticipantData">{formatCurrency(amountPerParticipant)}</dd>
                 </dl>
-                <div className="settlementList">
+                <div className="scroller">
                     {settlements.map(s => (
                         <Settlement payer={s.payer} amount={s.amount} receiver={s.receiver} key={randomString()} />
                     ))}

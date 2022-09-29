@@ -30,9 +30,9 @@ export function Participants() {
     return (
         <div className="appLayout">
             <Header />
-            <div className="listContainer participants">
+            <div className="scrollContainer participants">
                 <h2 className="groupName">{matchingGroupName}</h2>
-                <div className="participantList">
+                <div className="scroller">
                     {Object.keys(data.participants).map(id => <Participant key={id} id={id} />)}
                 </div>
             </div>
