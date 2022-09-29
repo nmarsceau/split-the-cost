@@ -43,6 +43,14 @@ export function Settings() {
                             {Object.keys(data.groups).length === 0 && <div className="ui segment"><i>No Groups Yet</i></div>}
                         </div>
                     </div>
+                    <p className="setting buy-coffee">
+                        If this app has been useful to you, please consider &ldquo;splitting the cost&rdquo; with me!
+                        <em data-emoji=":wink:" className="small"></em>
+                        <br /><br />
+                        <a href="https://www.buymeacoffee.com/nickmarsceau" target="_blank" rel="noreferrer">
+                            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style={{height: '60px', width: '217px'}} />
+                        </a>
+                    </p>
                 </div>
             </div>
             <div className="primaryButtonContainer">
