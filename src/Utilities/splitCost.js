@@ -1,3 +1,7 @@
+// instantiate the splitCost wasm function
+
+// export const splitCost = wasmSplitCost
+
 export const splitCost = participants => {
     let total = 0
     participants.forEach(p => {
