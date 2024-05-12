@@ -6,7 +6,7 @@ export function Header() {
     return (
         <div className="headerContainer">
             <header className="header">
-                <img src={process.env.PUBLIC_URL + 'logo/logo-64.png'} alt="" />
+                <img src={process.env.PUBLIC_URL + 'logo/logo-64.webp'} alt="" />
                 <h1>Split The Cost</h1>
             </header>
             {showSettings &&

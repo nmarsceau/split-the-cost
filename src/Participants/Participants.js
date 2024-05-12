@@ -66,7 +66,7 @@ export function Participants() {
             </div>
             <div className="primaryButtonContainer">
                 <VibrateButton type="link" to="/split" className="ui massive fluid teal button" vibrationPattern="300">
-                    <img src={process.env.PUBLIC_URL + 'logo/logo-64-outline.png'} alt="" />
+                    <img src={process.env.PUBLIC_URL + 'logo/logo-64-outline.webp'} alt="" />
                     <span>SPLIT IT</span>
                 </VibrateButton>
             </div>
